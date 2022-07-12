@@ -1,0 +1,96 @@
+import bpy
+from math import atan2, pi
+import numpy as np 
+from bpy import context
+
+o = bpy.context.object
+vcos = [ o.matrix_world @ v.co for v in o.data.vertices ]
+findCenter = lambda l: ( max(l) + min(l) ) / 2
+
+x,y,z  = [ [ v[i] for v in vcos ] for i in range(3) ]
+center = [ findCenter(axis) for axis in [x,y,z] ]
+
+print(center)
+
+nuclei_center=[53.63199996948242, 104.52799987792969, -58.904998779296875]
+
+
+def angle(A, B, C):
+    Ax, Ay = A[0]-B[0], A[1]-B[1]
+    Cx, Cy = C[0]-B[0], C[1]-B[1]
+    a = atan2(Ay, Ax)
+    c = atan2(Cy, Cx)
+    if a < 0: a += pi*2
+    if c < 0: c += pi*2
+    return (pi*2 + c - a) if a > c else (c - a)
+
+def angle2(A, B):
+    cos_angle=np.dot(A,B)/(np.linalg.norm(A)*np.linalg.norm(B))
+    angle=np.arccos(cos_angle)/pi*180
+    return angle
+
+
+# Quick way to test with/without hidden faces
+USE_FILTER_FACES = True
+
+
+def report_info(title="", message=""):
+    # show in console
+    print(title, message)
+    # show in popup
+    def draw_cb(self, context):
+        self.layout.label(text=message)
+    context.window_manager.popup_menu(draw_func=draw_cb, title=title, icon='INFO')
+
+
+def is_face_skip(f):
+    """Ignore faces that pass this test!"""
+    return f.hide is False
+    # You may want to filter based on material.
+    # return f.material_index == 0
+
+
+def bmesh_from_object_final(ob):
+    import bmesh
+    matrix = ob.matrix_world
+    me = ob.to_mesh()
+    me.transform(matrix)
+    bm = bmesh.new()
+    bm.from_mesh(me)
+    if USE_FILTER_FACES:
+        faces_remove = [f for f in bm.faces if not is_face_skip(f)]
+        for f in faces_remove:
+            bm.faces.remove(f)
+    return (bm, matrix.is_negative)
+
+
+def volume_and_area_from_object(ob):
+    bm, is_negative = bmesh_from_object_final(ob)
+    volume = bm.calc_volume(signed=True)
+    area = sum(f.calc_area() for f in bm.faces)
+    bm.free()
+    if is_negative:
+        volume = -volume
+    return volume, area
+
+
+angles=[]
+C_ref = np.array([x[0],y[0],z[0]]) 
+for i in range(len(x)):
+    C=[x[i],y[i],z[i]]
+    C=np.array(C)
+    #angles.append(angle(nuclei_center, center, C))
+    #angles.append(angle2([1,0,0], center-C))
+    angles.append(angle2(C_ref-nuclei_center, C-nuclei_center))
+
+angles2 = np.array(angles[1:len(angles)])
+
+print(center)
+angles = np.array(angles2)
+print('Mean')
+print(angles2.mean())
+print('Standard Deviation')
+print(angles2.std())
+volume_single, area_single = volume_and_area_from_object(o)
+print('Volume')
+print(volume_single)

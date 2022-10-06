@@ -3,6 +3,7 @@
         <img src="https://img.shields.io/circleci/project/github/badges/shields/master" alt="build status"></a>
 
 
+
 Morphological analysis tool for segmented 3D microscopy images of biological cells
 
 ## Description
@@ -10,11 +11,12 @@ Morphological analysis tool for segmented 3D microscopy images of biological cel
 An in-depth paragraph about your project and overview of use.
 
 ## Getting Started
+Cellwalker is a python-based pipeline starts with IPython notebooks for segmentation of 2D/3D microscopy images using machine learning or deep learning and is followed by a morphological analysis addon which we developed in Blender, a computer graphics software.
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+* Cellwalker was build in Blender 3.2.2 (Blender >2.8)
+* It requires python 3.10 (Shoul be the same version of Blender Python Interactive Console)
 
 ### Installing
 

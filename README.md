@@ -14,7 +14,7 @@ Cellwalker is a python-based pipeline starts with IPython notebooks for segmenta
 
 ### Dependencies
 
-* Cellwalker was build in Blender 3.2.2 (It requires Blender >= 2.8)
+* Cellwalker was build in Blender 3.2.2 (It requires Blender ≥ 2.8)
 * It requires python 3.10 (Shoul be the same version of Blender Python Interactive Console)
 
 ### Installing

@@ -39,8 +39,8 @@ pip install -r requirements.txt
 ```
 
 You should download files in order to set up Blender with a external python IDE (in our case Pycharm). 
-</p> Help:
-</p>
+</p> Help:</p>
+
 * The instruction can be found in https://b3d.interplanety.org/en/using-external-ide-pycharm-for-writing-blender-scripts/
 * The files can be found in https://github.com/Korchy/blender_autocomplete
 

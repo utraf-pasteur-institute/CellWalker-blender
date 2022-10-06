@@ -40,15 +40,22 @@ pip install -r requirements.txt
 
 You should download files in order to set up Blender with a external python IDE (in our case Pycharm). 
 </p> Help:
+</p>
 * The instruction can be found in https://b3d.interplanety.org/en/using-external-ide-pycharm-for-writing-blender-scripts/
 * The files can be found in https://github.com/Korchy/blender_autocomplete
 
 Browse to the 'src' folder of the cloned repository and run the python script as follows.
 ```
-python __init__.py
+python start_blender.py
 ```
-The above command will launch Blender controled by the Python script.
-
+The above command will launch Blender controled by the Python script.  In Blender text editor click in “New” button to create a new file. Write the following script, replacing _PATH_ with the PyCharm script path (__init__.py)
+```
+import bpy
+import os
+ 
+filename = os.path.join("_PATH_", "__init__.py")
+exec(compile(open(filename).read(), filename, 'exec'))
+```
 
 ### Executing program
 

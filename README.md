@@ -63,6 +63,8 @@ The above command will launch the CellWalker as a panel in the UI interface of B
 CellWalker window
 </p>
 
+All morphometric functionalities of CellWalker are accessible through this single window. Each tab in this panel is named accordingly. For examplem, the tab named Skeletonize contains all the functions related to skeletonization of 3D objects, such as- building, saving and opening skeletons, measurements on the skeletons etc.
+
 ### Executing program
 
 * How to run the program

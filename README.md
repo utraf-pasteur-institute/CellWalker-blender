@@ -1,4 +1,4 @@
-# Project Title
+# Cellwalker
 
 Simple overview of use/purpose.
 

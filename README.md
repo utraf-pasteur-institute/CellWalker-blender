@@ -1,6 +1,7 @@
 # Cellwalker
-
-Simple overview of use/purpose.
+<a href="https://circleci.com/gh/badges/shields/tree/master">
+        <img src="https://img.shields.io/circleci/project/github/badges/shields/master" alt="build status"></a>
+Morphological analysis tool for segmented 3D microscopy images of biological cells
 
 ## Description
 

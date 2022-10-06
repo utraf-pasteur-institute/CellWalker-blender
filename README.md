@@ -19,8 +19,36 @@ Cellwalker is a python-based pipeline starts with IPython notebooks for segmenta
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+The CellWalker setup was tested using <a href="https://www.anaconda.com/" target="_blank">Anaconda Python</a> distribution. But it should be possible to use other python distributions as well.<br><br>
+
+Clone the github repository to your local system and browse to the downloaded folder from a command line (for linux) or using Anaconda Prompt (for windows)
+
+Create an environment with Python 3.10 (according to the python version of Blender).
+```
+conda create --name cellwalker python=3.10
+```
+
+Activate the newly created environment
+```
+conda activate cellwalker
+```
+
+Install dependencies using requirements.txt file.
+```
+pip install -r requirements.txt
+```
+
+You should download files in order to set up Blender with a external python IDE (in our case Pycharm). 
+*Help:
+* The instruction can be found in https://b3d.interplanety.org/en/using-external-ide-pycharm-for-writing-blender-scripts/
+* The files can be found in https://github.com/Korchy/blender_autocomplete
+
+Browse to the 'src' folder of the cloned repository and run the python script as follows.
+```
+python __init__.py
+```
+The above command will launch Blender controled by the Python script.
+
 
 ### Executing program
 

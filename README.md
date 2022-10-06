@@ -56,6 +56,12 @@ import os
 filename = os.path.join("_PATH_", "__init__.py")
 exec(compile(open(filename).read(), filename, 'exec'))
 ```
+The above command will launch the CellWalker as a panel in the UI interface of Blender as shown below.
+
+<p style="font-style: italics;" align="center">
+<img height=300 src="cellwalker_blank.png" alt="CellWalker window in blender" /><br>
+CellWalker window
+</p>
 
 ### Executing program
 

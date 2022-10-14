@@ -21,7 +21,6 @@ Cellwalker is a python-based pipeline starts with IPython notebooks for segmenta
 Installation, modules and use. 
 
 
-
 # Authors
 
 Harsharvardhan Khare, Nathaly Dongo Mendoza </p>

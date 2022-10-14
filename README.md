@@ -1,7 +1,7 @@
 # Cellwalker
 
 <p style="font-style: italics;" align="center">
-<img height=300 src="src/logo_cellwalker.png"/><br>
+<img height=300 src="src/logo_cell.png"/><br>
 </p>
 
 

@@ -63,7 +63,6 @@ from Angular_distribution import  ( MySettings_Angle,OPERATOR_Angle_distribution
 
 #from Distance genetic algorithm
 from Distance_genetic_algorithm import  (MySettings_Distance,distance_GA,straigth_distance)
-
 # Orientaiton
 from Orientation_two_objs_plane import (MySettings_Orientation,OPERATOR_Orientation)
 

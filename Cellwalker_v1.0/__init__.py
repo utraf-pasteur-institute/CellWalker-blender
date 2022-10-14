@@ -32,7 +32,7 @@
 
 bl_info = {
 	"name": "CellWalker",
-	"author": "Harshavardhan Khare",
+	"author": "Harshavardhan Khare, Nathaly Dongo",
 	"version": (0, 0, 1),
 	"blender": (3, 0, 1),
 	"description": "Tools for analysis of segmented 3D microscopy images",

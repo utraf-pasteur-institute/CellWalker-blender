@@ -24,7 +24,7 @@ Installation, modules and use.
 
 # Authors
 
-Harsharvardhan Khare, Nathaly Dongo Mendoza
+Harsharvardhan Khare, Nathaly Dongo Mendoza </p>
 contact: nathaly.dongo-mendoza@pasteur.fr
 
 

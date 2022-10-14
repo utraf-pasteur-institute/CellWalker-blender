@@ -17,7 +17,7 @@ Cellwalker is a python-based pipeline starts with IPython notebooks for segmenta
 
 # Getting Started
 
-<a href="[https://circleci.com/gh/badges/shields/tree/master](https://github.com/utraf-pasteur-institute/Cellwalker-blender/wiki]"> User Guide </a>
+[User Guide]([https://github.com/NeuroMorph-EPFL/NeuroMorph/wiki](https://circleci.com/gh/badges/shields/tree/master](https://github.com/utraf-pasteur-institute/Cellwalker-blender/wiki])) <b> :round_pushpin: </b>  
 Installation, modules and use. 
 
 # Authors

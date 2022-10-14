@@ -2,7 +2,7 @@
 ### A computational pipeline for cellular segmentation and morphological analysis using microscopy images
 
 <p style="font-style: italics;" align="center">
-<img height=300 src="src/logo_cell.png"/><br>
+<img height=300 src="src/logo_github.png"/><br>
 </p>
 
 

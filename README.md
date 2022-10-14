@@ -13,13 +13,12 @@ Morphological analysis tool for segmented 3D microscopy images of biological cel
 
 # Description
 
-An in-depth paragraph about your project and overview of use.
-
-## Getting Started
 Cellwalker is a python-based pipeline starts with IPython notebooks for segmentation of 2D/3D microscopy images using machine learning or deep learning and is followed by a morphological analysis addon which we developed in Blender, a computer graphics software.
 
-# Documentation
+# Getting Started
 
+<a href="[https://circleci.com/gh/badges/shields/tree/master](https://github.com/utraf-pasteur-institute/Cellwalker-blender/wiki)"> User Guide </a>
+Installation, modules and use. 
 
 # Authors
 

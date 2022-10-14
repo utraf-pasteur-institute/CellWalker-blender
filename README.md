@@ -1,4 +1,10 @@
 # Cellwalker
+
+<p style="font-style: italics;" align="center">
+<img height=300 src="src/logo.png"/><br>
+</p>
+
+
 <a href="https://circleci.com/gh/badges/shields/tree/master">
         <img src="https://img.shields.io/circleci/project/github/badges/shields/master" alt="build status"></a>
 

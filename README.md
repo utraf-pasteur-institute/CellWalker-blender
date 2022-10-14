@@ -1,4 +1,5 @@
 # Cellwalker
+### A computational pipeline for cellular segmentation and morphological analysis using microscopy images
 
 <p style="font-style: italics;" align="center">
 <img height=300 src="src/logo_cell.png"/><br>
@@ -9,7 +10,6 @@
         <img src="https://img.shields.io/circleci/project/github/badges/shields/master" alt="build status"></a>
 
 </p>
-Morphological analysis tool for segmented 3D microscopy images of biological cells
 
 # Description
 

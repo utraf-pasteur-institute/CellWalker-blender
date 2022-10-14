@@ -33,7 +33,7 @@ def _show_final_path(verts_keys, population, path_lengths, gen):
     print('The minimun path length is',path_lengths[index_min],'units')
 
     emptyMesh = bpy.data.meshes.new('emptyMesh')
-    theObj = bpy.data.objects.new("shor_distance", emptyMesh)
+    theObj = bpy.data.objects.new("Node_distance", emptyMesh)
     bpy.context.collection.objects.link(theObj)
     verts = []
     edges = []
@@ -145,7 +145,7 @@ def _generate_chromosome(sel_vert,verts_keys,radius):
                 dy = abs(vert[1] - previous_vert[1])
                 dz = abs(vert[2] - previous_vert[2])
                 rad_posvert = max(dx, dy, dz)
-                if rad_posvert <= radius * 2:
+                if rad_posvert <= radius * 2.5:
                     # print(vert)
                     possible_next_vertices.append(vert)
         #print('possible',possible_next_vertices)
@@ -242,6 +242,9 @@ def distance_GA_fc():
     #(max_generations)
     start(sel_vert,verts_keys,radius,max_generations,top_percentage,population_size)
 
+################## Another type of distance ##################################
+
+
 def straigth_distance_fc():
     ob = bpy.context.active_object
     bm = bmesh.from_edit_mesh(bpy.context.active_object.data)
@@ -249,6 +252,13 @@ def straigth_distance_fc():
     obMat = ob.matrix_world
     sel_vert = [tuple(obMat @ vert.co) for vert in bm.verts if vert.select == True]
 
+    emptyMesh = bpy.data.meshes.new('emptyMesh')
+    theObj = bpy.data.objects.new("Straight_distance", emptyMesh)
+    bpy.context.collection.objects.link(theObj)
+
+    emptyMesh.from_pydata(sel_vert, [(0,1)], [])
+    emptyMesh.update()
+    bpy.context.view_layer.update()
 
     return(_distance(sel_vert[0], sel_vert[1]))
 

@@ -1,13 +1,14 @@
 import bpy
 import os
 import glob
+import sys 
 
 # ------------------------------------------------------------------------
 #    Scene Properties
 # ------------------------------------------------------------------------
 def import_env(context):
     print("Importing enviroment from directory ", context.scene.my_tool_env.path_env)
-
+    sys.path.append(context.scene.my_tool_env.path_env)
 
 class import_enviroment_class(bpy.types.Operator):
     """Tooltip"""

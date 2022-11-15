@@ -71,6 +71,7 @@ def CALCULATE_Orientation(context):
 
     v1_v2_angle=angle(v1, v2)
     print(v1_v2_angle)
+    context.scene.my_tool_or.Angle_Or=v1_v2_angle,
     return(v1_v2_angle)
 
 class OPERATOR_Orientation(bpy.types.Operator):
@@ -90,3 +91,4 @@ class MySettings_Orientation(bpy.types.PropertyGroup):
     Obj1: bpy.props.StringProperty()
     Obj2: bpy.props.StringProperty()
     pointer_Plane: bpy.props.StringProperty()
+    Angle_Or: bpy.props.FloatProperty()

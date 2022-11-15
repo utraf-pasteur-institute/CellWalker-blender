@@ -38,6 +38,10 @@ def CALCULATE_Angle_distribution(context):
     print(ftangles.mean())
     print('Standard Deviation')
     print(ftangles.std())
+
+    context.scene.my_tool_angle.Mean=ftangles.mean()
+    context.scene.my_tool_angle.Std = ftangles.std()
+
     return(ftangles)
 
 
@@ -57,4 +61,6 @@ class OPERATOR_Angle_distribution(bpy.types.Operator):
 class MySettings_Angle(bpy.types.PropertyGroup):
     A1: bpy.props.StringProperty()
     Object1: bpy.props.StringProperty()
+    Mean: bpy.props.FloatProperty()
+    Std: bpy.props.FloatProperty()
 

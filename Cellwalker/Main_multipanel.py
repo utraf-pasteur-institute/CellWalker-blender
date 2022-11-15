@@ -78,7 +78,7 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
             row = col.row()
             row.operator("object.mulvolsurf")
 
-            
+
         ######################## Centerline and Crosssectional ########################
         row = layout.row()
         icon = 'TRIA_DOWN' if context.scene.subpanel_Centerline_status else 'TRIA_RIGHT'
@@ -158,12 +158,18 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
             row.operator("object.distance")
 
             row = col.row()
+            row.label(text="Dijkstra Distance")
+            row = col.row()
+            row.prop(scene.my_tool_dist, "dijkstra_distance_pointer", text="Dijkstra distance")
+            row = col.row()
+            row.operator("object.dijkstra")
+
+            row = col.row()
             row.label(text="Straight Distance")
             row = col.row()
             row.prop(scene.my_tool_dist, "Straight_distance", text="Straight distance")
             row = col.row()
             row.operator("object.distance2")
-
             
 
         ######################## Skeleton ########################

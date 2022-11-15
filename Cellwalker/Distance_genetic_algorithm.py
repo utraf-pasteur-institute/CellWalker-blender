@@ -245,8 +245,9 @@ def distance_GA_fc():
     start(sel_vert,verts_keys,radius,max_generations,top_percentage,population_size)
 
 
-################## Another type of distance ##################################
-
+######################################################################################
+#                               Straigth Distance
+######################################################################################
 
 def straigth_distance_fc():
     ob = bpy.context.active_object
@@ -266,6 +267,134 @@ def straigth_distance_fc():
     bpy.context.scene.my_tool_dist.Straight_distance=_distance(sel_vert[0], sel_vert[1])
     return(_distance(sel_vert[0], sel_vert[1]))
 
+class straigth_distance(bpy.types.Operator):
+    """Tooltip"""
+    bl_idname = "object.distance2"
+    bl_label = "Straight distance"
+
+    @classmethod
+    def poll(cls, context):
+        return context.active_object is not None
+
+    def execute(self, context):
+        print('The minimun path length is', straigth_distance_fc(), 'units')
+        return {'FINISHED'}
+
+######################################################################################
+#                               Dijkstra Distance
+######################################################################################
+
+from math import inf
+
+
+class Node:
+    @property
+    def edges(self):
+        return (e for e in self.vert.link_edges if not e.tag)
+    
+    def __init__(self, v):
+        self.vert = v
+        self.length = inf
+        self.shortest_path = []
+        
+
+def dijkstra(bm, v_start, v_target=None):
+    for e in bm.edges:
+        e.tag = False
+    
+    d = {v : Node(v) for v in bm.verts}
+    node = d[v_start]
+    node.length = 0
+    
+    visiting = [node]
+
+    while visiting:
+        node = visiting.pop(0)
+        
+        if node.vert is v_target:
+            return d
+        
+        for e in node.edges:
+            e.tag = True
+            length = node.length + e.calc_length()
+            v = e.other_vert(node.vert)
+            
+            visit = d[v]
+            visiting.append(visit)
+            if visit.length > length:
+                visit.length = length
+                visit.shortest_path = node.shortest_path + [e]
+      
+        visiting.sort(key=lambda n: n.length)
+
+    return d
+
+# test call select two verts edit mode
+
+def run_dijkstra():         
+    context = bpy.context
+    ob = context.object
+    me = ob.data
+    bm = bmesh.from_edit_mesh(me)
+    v1, v2 = bm.select_history[-2:]            
+               
+    # calc shortest paths to one vert
+    nodes = dijkstra(bm, v1)
+    # specific target vert (quicker)
+    #nodes = dijkstra(bm, v1, v_target=v2)
+    # results of other vert
+    node = nodes[v2]
+
+    bpy.context.scene.my_tool_dist.dijkstra_distance_pointer = float(node.length) 
+    print('The minimun path length is', node.length, 'units')
+
+    for e in node.shortest_path:
+        e.select_set(True)
+    
+    sel_vert = [node.shortest_path[0].verts[0].co]
+    #print(node.shortest_path[0].verts[0].co)
+   
+    for i in range(len(node.shortest_path)): #node.shortest_path[3].verts
+        sel_vert.append(node.shortest_path[i].verts[0].co)
+        sel_vert.append(node.shortest_path[i].verts[1].co)
+        
+    print(sel_vert)
+
+
+    path_x = [sel_vert[j][0] for j in range(len(sel_vert))]
+    path_y = [sel_vert[j][1] for j in range(len(sel_vert))]
+    path_z = [sel_vert[j][2] for j in range(len(sel_vert))]
+
+
+    #print(sel_vert)
+
+    emptyMesh = bpy.data.meshes.new('emptyMesh')
+    theObj = bpy.data.objects.new("dijkstra_distance", emptyMesh)
+    bpy.context.collection.objects.link(theObj)
+    verts = []
+    edges = []
+    for i in range(len(path_y)):
+        verts.append([path_x[i], path_y[i], path_z[i]])
+        if i > 0:
+            edges.append([i - 1, i])
+
+    emptyMesh.from_pydata(verts, edges, [])
+    emptyMesh.update()
+    bpy.context.view_layer.update()
+
+class dijkstra_distance(bpy.types.Operator):
+    """Tooltip"""
+    bl_idname = "object.dijkstra"
+    bl_label = "Dijkstra distance"
+
+    @classmethod
+    def poll(cls, context):
+        return context.active_object is not None
+
+    def execute(self, context):
+        run_dijkstra()
+        return {'FINISHED'} 
+
 
 ############ Functions ###############################################################
 
@@ -283,18 +412,6 @@ class distance_GA(bpy.types.Operator):
         distance_GA_fc()
         return {'FINISHED'}
 
-class straigth_distance(bpy.types.Operator):
-    """Tooltip"""
-    bl_idname = "object.distance2"
-    bl_label = "Straight distance"
-
-    @classmethod
-    def poll(cls, context):
-        return context.active_object is not None
-
-    def execute(self, context):
-        print('The minimun path length is', straigth_distance_fc(), 'units')
-        return {'FINISHED'}
 
 
 class MySettings_Distance(bpy.types.PropertyGroup):
@@ -323,3 +440,4 @@ class MySettings_Distance(bpy.types.PropertyGroup):
     )
     Node_distance: bpy.props.FloatProperty()
     Straight_distance: bpy.props.FloatProperty()
+    dijkstra_distance_pointer: bpy.props.FloatProperty()

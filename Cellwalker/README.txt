@@ -23,14 +23,7 @@ Now you are inside the enviromnent 'cellwalker-blender'. That means, any packag
 
 On the command prompt run the following commands to install required modules.
 
-pip install numpy
-pip install scipy
-pip install kimimaro
-pip install trimesh
-pip install skeletor
-pip install networkx
-pip install multiprocess
-pip install shapely
+pip install -r requirements.txt
 
 On some systems (confirmed for Windows), the installation of the kimimaro package may give errors. This is because some dependencies need Microsoft Visual C++ 14.0 or greater. To resolve the issue download and install Microsoft C++ Build Tools from https://visualstudio.microsoft.com/visual-cpp-build-tools/Remember to select Workloads and check the option of Desktop development using C++ during the installation.
 

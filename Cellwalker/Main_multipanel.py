@@ -143,13 +143,18 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
             row.prop(scene.my_tool_dist, "top_percentage", text="Unit")
 
             row = col.row()
+            row.prop(scene.my_tool_dist, "Node_distance", text="Node distance")
+            row = col.row()
             row.operator("object.distance")
 
             row = col.row()
             row.label(text="Straight Distance")
             row = col.row()
+            row.prop(scene.my_tool_dist, "Straight_distance", text="Straight distance")
+            row = col.row()
             row.operator("object.distance2")
 
+            
 
         ######################## Skeleton ########################
         row = layout.row()

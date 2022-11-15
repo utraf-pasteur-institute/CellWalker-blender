@@ -46,6 +46,8 @@ def _show_final_path(verts_keys, population, path_lengths, gen):
     emptyMesh.update()
     bpy.context.view_layer.update()
 
+    bpy.context.scene.my_tool_dist.Node_distance=path_lengths[index_min]
+
 
 ##### start
 def start(sel_vert,verts_keys,radius,max_generations,top_percentage,population_size):
@@ -145,7 +147,7 @@ def _generate_chromosome(sel_vert,verts_keys,radius):
                 dy = abs(vert[1] - previous_vert[1])
                 dz = abs(vert[2] - previous_vert[2])
                 rad_posvert = max(dx, dy, dz)
-                if rad_posvert <= radius * 2.5:
+                if rad_posvert <= radius * 1.1:
                     # print(vert)
                     possible_next_vertices.append(vert)
         #print('possible',possible_next_vertices)
@@ -242,6 +244,7 @@ def distance_GA_fc():
     #(max_generations)
     start(sel_vert,verts_keys,radius,max_generations,top_percentage,population_size)
 
+
 ################## Another type of distance ##################################
 
 
@@ -260,6 +263,7 @@ def straigth_distance_fc():
     emptyMesh.update()
     bpy.context.view_layer.update()
 
+    bpy.context.scene.my_tool_dist.Straight_distance=_distance(sel_vert[0], sel_vert[1])
     return(_distance(sel_vert[0], sel_vert[1]))
 
 
@@ -317,3 +321,5 @@ class MySettings_Distance(bpy.types.PropertyGroup):
         min =0.1,
         max = 1
     )
+    Node_distance: bpy.props.FloatProperty()
+    Straight_distance: bpy.props.FloatProperty()

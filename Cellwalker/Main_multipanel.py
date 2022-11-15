@@ -73,7 +73,7 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
         row = layout.row()
         icon = 'TRIA_DOWN' if context.scene.subpanel_Centerline_status else 'TRIA_RIGHT'
         row.prop(context.scene, 'subpanel_Centerline_status', icon=icon, icon_only=True)
-        row.label(text='Cros-ssetional Tool')
+        row.label(text='Cross-setional Tool')
 
 
         # some data on the subpanel
@@ -86,13 +86,13 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
             col = box.column()
             row = col.row()
             row.label(text="Step")
-            row.prop(scene.my_tool, "slider", text="Unit")
+            row.prop(scene.my_tool_cross, "slider", text="Unit")
             row = col.row()
             row.operator("object.centerline")
 
 
             # display the properties
-            mytool = scene.my_tool
+            mytool = scene.my_tool_cross
             col = box.column()
             row = col.row()
             row.label(text="Cross-section Tool")
@@ -110,7 +110,7 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
             row = col.row()
             row.label(text="Export Properties")
             col = box.column(align=True)
-            col.prop(scene.my_tool, "path", text="")
+            col.prop(scene.my_tool_cross, "path", text="")
 
             # Exporting cross-sectional properties
             row = col.row()
@@ -169,7 +169,7 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
             row = col.row()
             row.label(text="Export Skeleton")
             col = box.column()
-            col.prop(scene.my_tool2, "path_skeleton", text="")
+            col.prop(scene.my_tool_skeleton, "path_skeleton", text="")
             # Export Skeleton
             row = col.row()
             row.operator("sk.export")

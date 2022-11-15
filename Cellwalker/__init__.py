@@ -69,7 +69,7 @@ from . Skeleton import (MESH_OT_skeletonize,MySettings_skeleton,export_operator_
 from . Angular_distribution import  ( MySettings_Angle,OPERATOR_Angle_distribution)
 
 #from Distance genetic algorithm
-from . Distance_genetic_algorithm import  (MySettings_Distance,distance_GA,straigth_distance)
+from . Distance_genetic_algorithm import  (MySettings_Distance,distance_GA,straigth_distance, dijkstra_distance)
 # dijkstra_distance
 # Orientaiton
 from . Orientation_two_objs_plane import (MySettings_Orientation,OPERATOR_Orientation)
@@ -82,7 +82,7 @@ classes = (VIEW3D_PT_main_panel,  import_enviroment_class, MyProperties_import_e
 		   	import_objects_class,MyProperties_import_objs,
 		   	MySettings_Angle,OPERATOR_Angle_distribution,
 		   	MySettings_Orientation,OPERATOR_Orientation,
-		   	MySettings_Distance,distance_GA,straigth_distance)#, dijkstra_distance)
+		   	MySettings_Distance,distance_GA,straigth_distance, dijkstra_distance)#, )
 
 #register, unregister = bpy.utils.register_classes_factory(classes)
 

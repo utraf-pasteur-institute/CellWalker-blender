@@ -47,7 +47,10 @@ import bpy
 #from . import Main_multipanel
 from . Main_multipanel import VIEW3D_PT_main_panel
 
-# import
+#import enviroment 
+from .Import_enviroment import (import_enviroment_class, MyProperties_import_enviroment)
+
+# import objects
 from . Import_objects_class import (import_objects_class,MyProperties_import_objs)
 
 #surface and volume
@@ -71,13 +74,14 @@ from . Distance_genetic_algorithm import  (MySettings_Distance,distance_GA,strai
 from . Orientation_two_objs_plane import (MySettings_Orientation,OPERATOR_Orientation)
 
 #V
-classes = (VIEW3D_PT_main_panel, MESH_OT_make_centerline, centerline, export_operator,MySettings, MESH_OT_skeletonize,
+classes = (VIEW3D_PT_main_panel,  import_enviroment_class, MyProperties_import_enviroment, 
+			MESH_OT_make_centerline, centerline, export_operator,MySettings, MESH_OT_skeletonize,
 			Measure_volume_area,MyProperties_VA,
-		   MySettings_skeleton, export_operator_sk,
-		   import_objects_class,MyProperties_import_objs,
-		   MySettings_Angle,OPERATOR_Angle_distribution,
-		   MySettings_Orientation,OPERATOR_Orientation,
-		   MySettings_Distance,distance_GA,straigth_distance)#, Properties)
+		   	MySettings_skeleton, export_operator_sk,
+		   	import_objects_class,MyProperties_import_objs,
+		   	MySettings_Angle,OPERATOR_Angle_distribution,
+		   	MySettings_Orientation,OPERATOR_Orientation,
+		   	MySettings_Distance,distance_GA,straigth_distance)#, Properties)
 
 #register, unregister = bpy.utils.register_classes_factory(classes)
 
@@ -96,15 +100,17 @@ def register():
 
 	# bpy.utils.register_module(classes)
 	# Pointers registraion
-	bpy.types.Scene.my_tool = bpy.props.PointerProperty(type=MySettings)
-	bpy.types.Scene.my_tool2 = bpy.props.PointerProperty(type=MySettings_skeleton)
+	bpy.types.Scene.my_tool_cross = bpy.props.PointerProperty(type=MySettings)
+	bpy.types.Scene.my_tool_skeleton = bpy.props.PointerProperty(type=MySettings_skeleton)
 	bpy.types.Scene.my_tool_import_objs = bpy.props.PointerProperty(type=MyProperties_import_objs)
 	bpy.types.Scene.my_tool_VA = bpy.props.PointerProperty(type=MyProperties_VA)
 	bpy.types.Scene.my_tool_angle = bpy.props.PointerProperty(type=MySettings_Angle)
 	bpy.types.Scene.my_tool_or = bpy.props.PointerProperty(type=MySettings_Orientation)
 	bpy.types.Scene.my_tool_dist = bpy.props.PointerProperty(type=MySettings_Distance)
+	bpy.types.Scene.my_tool_env = bpy.props.PointerProperty(type=MyProperties_import_enviroment)
 
 	# Subpanels registration
+	bpy.types.Scene.subpanel_import_env_status = bpy.props.BoolProperty(default=False)
 	bpy.types.Scene.subpanel_import_status = bpy.props.BoolProperty(default=False)
 	bpy.types.Scene.subpanel_VA_status = bpy.props.BoolProperty(default=False)
 	bpy.types.Scene.subpanel_Centerline_status = bpy.props.BoolProperty(default=False)
@@ -121,13 +127,14 @@ def unregister():
 		bpy.utils.unregister_class(cls)
 
 	# bpy.utils.unregister_module(classes)
-	del bpy.types.Scene.my_tool
-	del bpy.types.Scene.my_tool2
+	del bpy.types.Scene.my_tool_cross
+	del bpy.types.Scene.my_tool_skeleton
 	del bpy.types.Scene.my_tool_import_objs
 	del bpy.types.Scene.my_tool_VA
 	del bpy.types.Scene.my_tool_angle
 	del bpy.types.Scene.my_tool_or
 	del bpy.types.Scene.my_tool_dist
+	del bpy.types.Scene.my_tool_env 
 
 	del bpy.types.Scene.subpanel_import_status
 	del bpy.types.Scene.subpanel_VA_status

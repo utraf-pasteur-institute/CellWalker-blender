@@ -25,7 +25,7 @@ def def_premeasure(context):
     bm.free()
 
 
-def volume_and_area(context):
+def volume_and_area_w(context):
     bm = bmesh.new()
     out = open(context.scene.my_tool_VA.path + "/" + "volume_and_areas.csv", 'w')
     print(out)
@@ -38,11 +38,40 @@ def volume_and_area(context):
         volume = float(bm.calc_volume())
         out.write("" + str(name_obj) + "," + str(area) + "," + str(volume) + "\n")
 
+def volume_and_area(context):
+    bm = bmesh.new()
+    area=[]
+    volume=[]
+    #names=[]
+    obj=bpy.context.selected_objects[0]
+    bm.from_mesh(obj.data)
+    #name_obj = obj.data.name
+    context.scene.my_tool_VA.SO_vol= sum(f.calc_area() for f in bm.faces)
+    context.scene.my_tool_VA.SO_area = float(bm.calc_volume())
+    return 0
+
+
+############ Functions ###############################################################
 
 class Measure_volume_area(bpy.types.Operator):
     """Tooltip"""
-    bl_idname = "measuring.volume"
-    bl_label = "Volume and Surface Area"
+    bl_idname = "object.singlevolsurf"
+    bl_label = "Multiple Object Calculator"
+
+    @classmethod
+    def poll(cls, context):
+        return context.active_object is not None
+
+    def execute(self, context):
+        print('Starting Genetic Algorithm')
+        def_premeasure(context)
+        volume_and_area_w(context)
+        return {'FINISHED'}
+
+class single_VA(bpy.types.Operator):
+    """Tooltip"""
+    bl_idname = "object.mulvolsurf"
+    bl_label = "Single Object Calculator"
 
     @classmethod
     def poll(cls, context):
@@ -53,6 +82,19 @@ class Measure_volume_area(bpy.types.Operator):
         volume_and_area(context)
         return {'FINISHED'}
 
+class MESH_OT_single_volume(bpy.types.Operator):
+    """Tooltip"""
+    bl_idname = "single.volume"
+    bl_label = "Single Object Calculator"
+
+    @classmethod
+    def poll(cls, context):
+        return context.active_object is not None
+
+    def execute(self, context):
+        def_premeasure(context)
+        volume_and_area(context)
+        return {'FINISHED'}
 
 class MyProperties_VA(bpy.types.PropertyGroup):
     path: bpy.props.StringProperty(
@@ -62,3 +104,5 @@ class MyProperties_VA(bpy.types.PropertyGroup):
         maxlen=1024,
         subtype='DIR_PATH')
 
+    SO_vol: bpy.props.FloatProperty()
+    SO_area: bpy.props.FloatProperty()

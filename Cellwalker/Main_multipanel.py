@@ -55,20 +55,30 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
         row = layout.row()
         icon = 'TRIA_DOWN' if context.scene.subpanel_VA_status else 'TRIA_RIGHT'
         row.prop(context.scene, 'subpanel_VA_status', icon=icon, icon_only=True)
-        row.label(text='Volume and area')
+        row.label(text='Volume and Surface area')
 
         # some data on the subpanel
         if context.scene.subpanel_VA_status:
             box = layout.box()
             col = box.column()
-            row = col.row()
 
-            row.label(text="Measure Volume")
-            col = box.column(align=True)
-            col.prop(scene.my_tool_VA, "path", text="")
             row = col.row()
-            row.operator("measuring.volume")
+            row.label(text="For a single object")
+            row = col.row()
+            row.prop(scene.my_tool_VA, "SO_vol", text="Volume")
+            row = col.row()
+            row.prop(scene.my_tool_VA, "SO_area", text="Area")
+            row = col.row()
+            row.operator("object.singlevolsurf")
 
+            row = col.row()
+            row.label(text="For multiple objects")
+            row = col.row()
+            row.prop(scene.my_tool_VA, "path", text="")
+            row = col.row()
+            row.operator("object.mulvolsurf")
+
+            
         ######################## Centerline and Crosssectional ########################
         row = layout.row()
         icon = 'TRIA_DOWN' if context.scene.subpanel_Centerline_status else 'TRIA_RIGHT'
@@ -203,6 +213,11 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
             row.prop_search(scene.my_tool_angle, "Object1", scene, "objects")
 
             row = col.row()
+            row.prop(scene.my_tool_angle, "Mean", text="Mean")
+            row = col.row()
+            row.prop(scene.my_tool_angle, "Std", text="Standard deviation")
+
+            row = col.row()
             row.operator("angle.distribution")
 
         ######################## Orientation ########################
@@ -232,9 +247,11 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
             row = col.row()
             row.label(text="Plane as reference")
             row = col.row()
-            row.prop_search(scene.my_tool_or, "pointer_Plane", scene, "objects")
+            row.prop_search(scene.my_tool_or, "pointer_Plane", scene, "objects") #, text="Mean"
+
+            row = col.row()
+            row.prop(scene.my_tool_or, "Angle_Or", text="Orientation (°)")
 
             row = col.row()
             row.operator("angle.orientation")
-
 

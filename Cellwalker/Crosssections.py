@@ -26,7 +26,7 @@ def create_planes_along_centerline(context, centerline, obj):
     # bpy.data.objects[0]
     # centerline = bpy.data.objects[0]
     object_name = bpy.context.object.name
-    out = open(bpy.context.scene.my_tool.path + "/" + "_".join([obj.name,centerline.name]) + ".cross-section_param.csv", 'w')
+    out = open(bpy.context.scene.my_tool_cross.path + "/" + "_".join([obj.name,centerline.name]) + ".cross-section_param.csv", 'w')
     out.write(
         "IND,Area,Perimeter,ConvexArea,ConvexPerimeter,EquivDiameter,Convexity_area,Convexity_perimeter,MinorAxis,MajorAxis\n")
 
@@ -51,7 +51,7 @@ def create_planes_along_centerline(context, centerline, obj):
         bm.from_mesh(me)
 
         # check if bool property is enabled
-        if (context.scene.my_tool.my_bool_area == True):
+        if (context.scene.my_tool_cross.my_bool_area == True):
             area = bmesh_calc_area(bm)
         else:
             area = 0
@@ -63,7 +63,7 @@ def create_planes_along_centerline(context, centerline, obj):
         # verts = [v for v in bm.verts]
 
         # check if bool property is enabled
-        if (context.scene.my_tool.my_bool_perimeter == True):
+        if (context.scene.my_tool_cross.my_bool_perimeter == True):
             edge_lengths = [np.linalg.norm(np.array(e.verts[0].co - e.verts[1].co)) for e in bm.edges]
             perimeter = np.sum(edge_lengths)
         else:
@@ -78,7 +78,7 @@ def create_planes_along_centerline(context, centerline, obj):
         #	perimeter += np.linalg.norm(list(verts[i].co-verts[i+1].co))
 
         # volume = bmesh_calc_volume(bm) # Not needed
-        if (context.scene.my_tool.my_bool_equidiameter == True):
+        if (context.scene.my_tool_cross.my_bool_equidiameter == True):
             equivalent_diameter = 2 * np.sqrt(area / np.pi)
         else:
             equivalent_diameter = 0
@@ -142,19 +142,19 @@ def create_planes_along_centerline(context, centerline, obj):
         minor_axis = 0.0
         major_axis = 0.0
 
-        if (context.scene.my_tool.my_bool_convexity_area == True):
+        if (context.scene.my_tool_cross.my_bool_convexity_area == True):
             if convex_area > 0:
                 convexity_area = area / convex_area
         else:
             convexity_area = 0
 
-        if (context.scene.my_tool.my_bool_convexity_perimeter == True):
+        if (context.scene.my_tool_cross.my_bool_convexity_perimeter == True):
             if perimeter > 0:
                 convexity_perimeter = convex_perimeter / perimeter
         else:
             convexity_perimeter = 0
 
-        if (context.scene.my_tool.my_bool_Minor_Axis == True):
+        if (context.scene.my_tool_cross.my_bool_Minor_Axis == True):
             if len(points) >= 3:
                 poly = Polygon(points)
                 mbr_points = list(zip(*poly.minimum_rotated_rectangle.exterior.coords.xy))
@@ -166,7 +166,7 @@ def create_planes_along_centerline(context, centerline, obj):
         else:
             minor_axis = 0
 
-        if (context.scene.my_tool.my_bool_Major_Axis == True):
+        if (context.scene.my_tool_cross.my_bool_Major_Axis == True):
             if len(points) >= 3:
                 poly = Polygon(points)
                 mbr_points = list(zip(*poly.minimum_rotated_rectangle.exterior.coords.xy))
@@ -314,7 +314,7 @@ def create_centerline(context):
     v = points[0] - points[1]
     magnitude = np.sqrt(v.dot(v))
 
-    nstep = magnitude / context.scene.my_tool.slider
+    nstep = magnitude / context.scene.my_tool_cross.slider
     step = v / int(nstep)
 
     for i in range(int(nstep)):

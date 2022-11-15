@@ -100,7 +100,7 @@ class export_operator_sk(bpy.types.Operator):
         return context.active_object is not None
 
     def execute(self, context):
-        saveSkeletonObjFile_line(self.skel_full, fname=bpy.context.scene.my_tool2.path_skeleton,
+        saveSkeletonObjFile_line(self.skel_full, fname=bpy.context.scene.my_tool_skeleton.path_skeleton,
                                  translate_x=self.translate_x, translate_y=self.translate_y, translate_z=self.translate_z)
         return {'FINISHED'}
 

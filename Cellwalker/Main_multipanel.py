@@ -13,11 +13,30 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
         layout = self.layout
         scene = context.scene
 
+        ########################Importing enviroment subpanel caption ########################
+        row = layout.row()
+        icon = 'TRIA_DOWN' if context.scene.subpanel_import_env_status else 'TRIA_RIGHT'
+        row.prop(context.scene, 'subpanel_import_env_status', icon=icon, icon_only=True)
+        row.label(text='Import Python enviroment')
+
+        # some data on the subpanel
+        if context.scene.subpanel_import_env_status:
+            box = layout.box()
+            col = box.column()
+            row = col.row()
+
+            # Importing button
+            row.label(text="Import enviroment")
+            row = col.row()
+            row.prop(scene.my_tool_env, "path_env", text="")
+            row = col.row()
+            row.operator("import.env")        
+        
         ########################Importing subpanel caption ########################
         row = layout.row()
         icon = 'TRIA_DOWN' if context.scene.subpanel_import_status else 'TRIA_RIGHT'
         row.prop(context.scene, 'subpanel_import_status', icon=icon, icon_only=True)
-        row.label(text='Importing objects')
+        row.label(text='Import objects')
 
         # some data on the subpanel
         if context.scene.subpanel_import_status:
@@ -76,7 +95,7 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
             mytool = scene.my_tool
             col = box.column()
             row = col.row()
-            row.label(text="Cross-sectional Properties")
+            row.label(text="Cross-section Tool")
             col.prop(mytool, "my_bool_area", text="Area")
             col.prop(mytool, "my_bool_perimeter", text="Perimeter")
             col.prop(mytool, "my_bool_convexarea", text="Convex Area")

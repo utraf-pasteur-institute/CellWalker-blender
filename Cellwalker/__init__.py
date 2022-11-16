@@ -54,7 +54,7 @@ from .Import_enviroment import (import_enviroment_class, MyProperties_import_env
 from . Import_objects_class import (import_objects_class,MyProperties_import_objs)
 
 #surface and volume
-from . Surface_and_Volumes import (Measure_volume_area,MyProperties_VA)
+from . Surface_and_Volumes import (Measure_volume_area,MyProperties_VA,single_VA)
 
 #centerline
 from . Centerline import MESH_OT_make_centerline
@@ -77,7 +77,7 @@ from . Orientation_two_objs_plane import (MySettings_Orientation,OPERATOR_Orient
 #V
 classes = (VIEW3D_PT_main_panel,  import_enviroment_class, MyProperties_import_enviroment, 
 			MESH_OT_make_centerline, centerline, export_operator,MySettings, MESH_OT_skeletonize,
-			Measure_volume_area,MyProperties_VA,
+			Measure_volume_area,MyProperties_VA, single_VA,
 		   	MySettings_skeleton, export_operator_sk,
 		   	import_objects_class,MyProperties_import_objs,
 		   	MySettings_Angle,OPERATOR_Angle_distribution,

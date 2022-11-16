@@ -78,7 +78,6 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
             row = col.row()
             row.operator("object.mulvolsurf")
 
-
         ######################## Centerline and Crosssectional ########################
         row = layout.row()
         icon = 'TRIA_DOWN' if context.scene.subpanel_Centerline_status else 'TRIA_RIGHT'

@@ -55,7 +55,7 @@ def volume_and_area(context):
 
 class Measure_volume_area(bpy.types.Operator):
     """Tooltip"""
-    bl_idname = "object.singlevolsurf"
+    bl_idname = "object.mulvolsurf"
     bl_label = "Multiple Object Calculator"
 
     @classmethod
@@ -70,7 +70,7 @@ class Measure_volume_area(bpy.types.Operator):
 
 class single_VA(bpy.types.Operator):
     """Tooltip"""
-    bl_idname = "object.mulvolsurf"
+    bl_idname = "object.singlevolsurf"
     bl_label = "Single Object Calculator"
 
     @classmethod
@@ -82,19 +82,6 @@ class single_VA(bpy.types.Operator):
         volume_and_area(context)
         return {'FINISHED'}
 
-class MESH_OT_single_volume(bpy.types.Operator):
-    """Tooltip"""
-    bl_idname = "single.volume"
-    bl_label = "Single Object Calculator"
-
-    @classmethod
-    def poll(cls, context):
-        return context.active_object is not None
-
-    def execute(self, context):
-        def_premeasure(context)
-        volume_and_area(context)
-        return {'FINISHED'}
 
 class MyProperties_VA(bpy.types.PropertyGroup):
     path: bpy.props.StringProperty(

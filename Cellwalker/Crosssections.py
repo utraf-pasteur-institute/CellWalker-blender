@@ -6,14 +6,6 @@ import bmesh
 import numpy as np
 from bpy.utils import *
 
-#if os.name == 'posix':
-#    sys.path.append("/home/harsh/anaconda3/envs/blender/lib/python3.9/site-packages")
-#elif os.name == 'nt':
-#    sys.path.append("C:\\Users\\harsh\\anaconda3\\envs\\cellwalker-blender\\Lib\\site-packages")
-#else:
-#    print("Operating system not recognized! os.name =", os.name)
-#    print("Some modules may not be imported.")
-
 def import_global():
     global ConvexHull, Polygon, LineString
     from scipy.spatial import ConvexHull

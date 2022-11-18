@@ -19,6 +19,7 @@ class import_objects_class(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "import.objs"
     bl_label = "Import obj. files"
+    bl_description = "Import all the objects in the folder"
 
     def execute(self, context):
         import_obj(context)

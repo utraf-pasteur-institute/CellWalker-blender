@@ -48,6 +48,7 @@ def CALCULATE_Angle_distribution(context):
 class OPERATOR_Angle_distribution(bpy.types.Operator):
     bl_idname = "angle.distribution"
     bl_label = "Calculate distribution"
+    bl_description = "Measure the angle distribution of all the voxel in one object regarding one point"
 
     @classmethod
     def poll(cls, context):

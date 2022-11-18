@@ -32,6 +32,7 @@ class export_operator_sk(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "sk.export"
     bl_label = "Save Skeleton"
+    bl_description = "Save Skeleton"
 
     @classmethod
     def poll(cls, context):

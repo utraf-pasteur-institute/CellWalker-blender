@@ -321,6 +321,7 @@ class centerline(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.centerline"
     bl_label = "Create centerline"
+    bl_description = "Calculate a centerline"
 
     @classmethod
     def poll(cls, context):
@@ -337,6 +338,7 @@ class export_operator(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.export"
     bl_label = "Calculate and Save"
+    bl_description = "Calculates the different cross-sectional parameters and export them in .CSV file"
 
     @classmethod
     def poll(cls, context):

@@ -6,13 +6,13 @@ import bmesh
 import numpy as np
 from bpy.utils import *
 
-if os.name == 'posix':
-    sys.path.append("/home/harsh/anaconda3/envs/blender/lib/python3.9/site-packages")
-elif os.name == 'nt':
-    sys.path.append("C:\\Users\\harsh\\anaconda3\\envs\\cellwalker-blender\\Lib\\site-packages")
-else:
-    print("Operating system not recognized! os.name =", os.name)
-    print("Some modules may not be imported.")
+#if os.name == 'posix':
+#    sys.path.append("/home/harsh/anaconda3/envs/blender/lib/python3.9/site-packages")
+#elif os.name == 'nt':
+#    sys.path.append("C:\\Users\\harsh\\anaconda3\\envs\\cellwalker-blender\\Lib\\site-packages")
+#else:
+#    print("Operating system not recognized! os.name =", os.name)
+#    print("Some modules may not be imported.")
 
 def import_global():
     global ConvexHull, Polygon, LineString
@@ -267,7 +267,7 @@ def calculate_cross_sectional(context):
         print("You have to choose exactly two objects and one of them must have a name starting with 'centerline'.")
         return()
     for o in bpy.context.selected_objects:
-        if o.name.lower().startswith('centerline'):
+        if 'centerline' in o.name.lower():
             centerline = o
         else:
             obj = o
@@ -306,7 +306,7 @@ def create_centerline(context):
             points.append(obMat @ v.co)
 
     emptyMesh = bpy.data.meshes.new('emptyMesh')
-    theObj = bpy.data.objects.new("centerline", emptyMesh)
+    theObj = bpy.data.objects.new(bpy.context.object.name+".centerline", emptyMesh)
     bpy.context.collection.objects.link(theObj)
 
     verts = []

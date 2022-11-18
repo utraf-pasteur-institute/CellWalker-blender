@@ -57,6 +57,8 @@ class Measure_volume_area(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.singlevolsurf"
     bl_label = "Multiple Object Calculator"
+    bl_description = "Calculates the area and volume of multiple selected objects in Object mood it creates a file with the information"
+
 
     @classmethod
     def poll(cls, context):
@@ -72,6 +74,7 @@ class single_VA(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.mulvolsurf"
     bl_label = "Single Object Calculator"
+    bl_description = "Calculates the area and volume of the object selected in Object mood"
 
     @classmethod
     def poll(cls, context):
@@ -86,6 +89,8 @@ class MESH_OT_single_volume(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "single.volume"
     bl_label = "Single Object Calculator"
+    bl_description = "Calculates the area and volume of the object selected in Object mood"
+
 
     @classmethod
     def poll(cls, context):

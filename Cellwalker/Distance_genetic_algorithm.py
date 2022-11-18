@@ -271,6 +271,7 @@ class straigth_distance(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.distance2"
     bl_label = "Straight distance"
+    bl_description = "It measures the straight distance between two nodes"
 
     @classmethod
     def poll(cls, context):
@@ -386,6 +387,7 @@ class dijkstra_distance(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.dijkstra"
     bl_label = "Dijkstra distance"
+    bl_description = "It measures the shortest path between two nodes employing Dijkstra's Algorithm"
 
     @classmethod
     def poll(cls, context):

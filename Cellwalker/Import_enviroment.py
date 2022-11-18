@@ -14,6 +14,7 @@ class import_enviroment_class(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "import.env"
     bl_label = "Import enviroment"
+    bl_description = "Imports the enviroment from the indicated folder"
 
     def execute(self, context):
         import_env(context)

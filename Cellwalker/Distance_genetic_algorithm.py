@@ -285,10 +285,12 @@ class straigth_distance(bpy.types.Operator):
 #                               Dijkstra Distance
 ######################################################################################
 
+# Dijktra distance was based in the code of: 
+# https://blender.stackexchange.com/questions/186067/what-is-the-bmesh-equivalent-to-bpy-ops-mesh-shortest-path-select 
+
 from math import inf
 
-
-class Node:
+class Node_class:
     @property
     def edges(self):
         return (e for e in self.vert.link_edges if not e.tag)
@@ -303,50 +305,45 @@ def dijkstra(bm, v_start, v_target=None):
     for e in bm.edges:
         e.tag = False
     
-    d = {v : Node(v) for v in bm.verts}
-    node = d[v_start]
+    nodes_in_object = {v : Node_class(v) for v in bm.verts}
+    node = nodes_in_object[v_start]
     node.length = 0
     
-    visiting = [node]
+    visiting_list = [node]
 
-    while visiting:
-        node = visiting.pop(0)
+    while visiting_list:
+        node = visiting_list.pop(0)
         
         if node.vert is v_target:
-            return d
+            return nodes_in_object
         
         for e in node.edges:
             e.tag = True
-            length = node.length + e.calc_length()
+            node_length = node.length + e.calc_length()
             v = e.other_vert(node.vert)
             
-            visit = d[v]
-            visiting.append(visit)
-            if visit.length > length:
-                visit.length = length
-                visit.shortest_path = node.shortest_path + [e]
+            visited_node = nodes_in_object[v]
+            visiting_list.append(visited_node)
+            if visited_node.length > node_length:
+                visited_node.length = node_length
+                visited_node.shortest_path = node.shortest_path + [e]
       
-        visiting.sort(key=lambda n: n.length)
+        visiting_list.sort(key=lambda nod: nod.length)
 
-    return d
+    return nodes_in_object
 
 # test call select two verts edit mode
 
 def run_dijkstra():         
     context = bpy.context
-    ob = context.object
-    me = ob.data
-    bm = bmesh.from_edit_mesh(me)
+    bm = bmesh.from_edit_mesh(context.object.data)
     v1, v2 = bm.select_history[-2:]            
                
     # calc shortest paths to one vert
     nodes = dijkstra(bm, v1)
-    # specific target vert (quicker)
-    #nodes = dijkstra(bm, v1, v_target=v2)
-    # results of other vert
     node = nodes[v2]
 
-    bpy.context.scene.my_tool_dist.dijkstra_distance_pointer = float(node.length) 
+    context.scene.my_tool_dist.dijkstra_distance_pointer = float(node.length) 
     print('The minimun path length is', node.length, 'units')
 
     for e in node.shortest_path:

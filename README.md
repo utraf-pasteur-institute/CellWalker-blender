@@ -1,7 +1,7 @@
 # Cellwalker
 
 <p style="font-style: italics;" align="center">
-<img height=300 src="src/logo_github.png"/><br>
+<img height=300 src="misc/logo_github.png"/><br>
 </p>
 
 
@@ -16,7 +16,7 @@ Cellwalker is a python-based pipeline starts with IPython notebooks for segmenta
 
 # Getting Started
 
-<b> :round_pushpin: </b> [`<User Guide>`](https://github.com/utraf-pasteur-institute/Cellwalker-blender/wiki) </p>
+<b> :round_pushpin: </b> [`<User Guide>`](https://github.com/utraf-pasteur-institute/CellWalker-blender/wiki) </p>
 Installation, modules and use. 
 
 

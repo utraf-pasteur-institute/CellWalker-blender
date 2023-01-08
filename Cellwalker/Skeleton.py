@@ -21,6 +21,7 @@ def import_global():
 #axis_forward = 'Y'
 #axis_up = 'Z'
 #bpy.ops.import_scene.obj(filepath=fname, axis_forward=axis_forward, axis_up=axis_up)
+# Currently, importing a skeleton OBJ file through Blender's OBJ import may not align it correctly. Setting the orientations is important.
     
 def saveSkeletonObjFile(fname=""):
     if fname == "":
@@ -68,8 +69,8 @@ class MESH_OT_skeletonize(bpy.types.Operator):
 
         mesh = trimesh.Trimesh(vertices=verts, faces=faces)
 
-        print(mesh)
-        print(mesh.vertices)
+        #print(mesh)
+        #print(mesh.vertices)
         min_mesh = np.min(mesh.vertices, axis=0)
         max_mesh = np.max(mesh.vertices, axis=0)
         print("Minimum of mesh vertices:", min_mesh)
@@ -112,9 +113,9 @@ class MESH_OT_skeletonize(bpy.types.Operator):
             voxels = scipy.ndimage.morphology.binary_fill_holes(volume.matrix)
             #print(voxels.astype(int))
             #print(volume)
-            print("***** voxels")
-            print(type(voxels))
-            print("***")
+            #print("***** voxels")
+            #print(type(voxels))
+            #print("***")
 
             skels = kimimaro.skeletonize(
                 voxels,

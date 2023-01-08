@@ -1,4 +1,4 @@
-Download this folder and import it like a addon zip in Blender
+This folder contains the source code of the CellWalker-blender addon. If you only want to install the addon (not make changes to the source code), then please use the zip file provided outside this folder. You can use the zip file to install CellWalker-Blender addon in Blender.<br>
 
 Instructions to setup an Anaconda python environment so that the external python packages will work inside the blender addon.
 
@@ -11,22 +11,23 @@ Accept to install required packages for this environment and the command will in
 
 Here you will see all the available environments. Each environment is in its own folder. When you install any other packages to a specific environment, they are installed inside the folder dedicated to that particular environment.
 
-Now you can activate the environment on the Anaconda command prompt.
+Now, start the Anaconda prompt command line window and activate the environment.
 
+```bash
 conda activate cellwalker-blender
+```
 
-Once activated, you should see the name of the environment in brackets at the beginning of the line. See the image below.
+Once activated, you should see the name of the environment in brackets at the beginning of the line- **(cellwalker-blender) C:\Users\harsh>**<br>
+See the image below.<br>
 
-(cellwalker-blender) C:\Users\harsh>
 
-Now you are inside the enviromnent 'cellwalker-blender'. That means, any package you will install or uninstall now will happen inside the cellwalker-blender environment and it will not affect any other environments.
+Now you are inside the enviromnent 'cellwalker-blender'. This means, any package you will install or uninstall will happen inside the cellwalker-blender environment and it will not affect any other environments.<br>
 
 On the command prompt run the following commands to install required modules.
-
+```bash
 pip install -r requirements.txt
+```
 
-On some systems (confirmed for Windows), the installation of the kimimaro package may give errors. This is because some dependencies need Microsoft Visual C++ 14.0 or greater. To resolve the issue download and install Microsoft C++ Build Tools from https://visualstudio.microsoft.com/visual-cpp-build-tools/Remember to select Workloads and check the option of Desktop development using C++ during the installation.
+On some systems (confirmed for Windows), the installation of the kimimaro package may give errors. This is because some dependencies need Microsoft Visual C++ 14.0 or greater. To resolve the issue download and install Microsoft C++ Build Tools from https://visualstudio.microsoft.com/visual-cpp-build-tools/Remember. Select Workloads and check the option of 'Desktop development using C++' during the installation. Then try installing kimimaro again using ```pip install kimimaro```.<br>
 
-Then try installing kimimaro again using 'pip install kimimaro.
-
-Once all the packages are installed, you have to define the path for your environment folder in the python_environment.txt file which is located.
+Once all the packages are installed, you have to define the path for your environment folder in the python_environment.txt file which is located 

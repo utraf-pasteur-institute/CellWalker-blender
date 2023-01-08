@@ -3,7 +3,7 @@ import bpy
 class VIEW3D_PT_main_panel(bpy.types.Panel):
     """Creates a Panel in the Object properties window"""
     bl_label = "CellWalker"
-    bl_idname = "VIEW3D.PT.main_panel"
+    bl_idname = "view3d.main_panel"
     bl_category = "CellWalker"
     bl_space_type = 'VIEW_3D'#'PROPERTIES'
     bl_region_type = 'UI'#'WINDOW'
@@ -17,7 +17,7 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
         row = layout.row()
         icon = 'TRIA_DOWN' if context.scene.subpanel_import_env_status else 'TRIA_RIGHT'
         row.prop(context.scene, 'subpanel_import_env_status', icon=icon, icon_only=True)
-        row.label(text='Import Python enviroment')
+        row.label(text='Import Python environment')
 
         # some data on the subpanel
         if context.scene.subpanel_import_env_status:
@@ -55,13 +55,14 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
         row = layout.row()
         icon = 'TRIA_DOWN' if context.scene.subpanel_VA_status else 'TRIA_RIGHT'
         row.prop(context.scene, 'subpanel_VA_status', icon=icon, icon_only=True)
-        row.label(text='Volume and Surface area')
+        row.label(text='Surface area and Volume')
 
         # some data on the subpanel
         if context.scene.subpanel_VA_status:
             box = layout.box()
             col = box.column()
 
+            """
             row = col.row()
             row.label(text="For a single object")
             row = col.row()
@@ -70,13 +71,14 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
             row.prop(scene.my_tool_VA, "SO_area", text="Area")
             row = col.row()
             row.operator("object.singlevolsurf")
-
+            """
+            
             row = col.row()
             row.label(text="For multiple objects")
             row = col.row()
             row.prop(scene.my_tool_VA, "path", text="")
             row = col.row()
-            row.operator("object.mulvolsurf")
+            row.operator("object.surfvol_multi")
 
 
         ######################## Centerline and Crosssectional ########################
@@ -159,14 +161,14 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
             row = col.row()
             row.label(text="Dijkstra Distance")
             row = col.row()
-            row.prop(scene.my_tool_dist, "dijkstra_distance_pointer", text="Dijkstra distance")
+            row.prop(scene.my_tool_dist, "dijkstra_distance", text="Dijkstra distance")
             row = col.row()
             row.operator("object.dijkstra")
 
             row = col.row()
             row.label(text="Straight Distance")
             row = col.row()
-            row.prop(scene.my_tool_dist, "Straight_distance", text="Straight distance")
+            row.prop(scene.my_tool_dist, "straight_distance", text="Straight distance")
             row = col.row()
             row.operator("object.distance2")
             

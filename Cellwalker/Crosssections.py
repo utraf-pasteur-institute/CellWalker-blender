@@ -11,9 +11,6 @@ def import_global():
     from scipy.spatial import ConvexHull
     from shapely.geometry import Polygon, LineString
 
-#    Store properties in the active scene
-# ------------------------------------------------------------------------
-
 def create_planes_along_centerline(context, centerline, obj):
     # bpy.data.objects[0]
     # centerline = bpy.data.objects[0]
@@ -198,7 +195,10 @@ def create_plane(centerline, ind):
     # Take weighted average of vectors defined by two vertices in either directions of the chosen vertex.
     # This average vector is used as the plane normal.
     # plane_size is the size of the initial plane which is used to perform cross-sectioning with the selected object.
-    plane_size = 5.0 # NOTE: User control on this parameter will be provided in future versions.
+    
+    # TODO: User control on this parameter will be provided in future versions.
+    # If the object is larger than this plane then the cross-section is imcomplete. Increase the plane_size for very large objects.
+    plane_size = 10.0
     # print(plane_size)
 
     p = centerline.data.vertices[ind].co
@@ -250,7 +250,7 @@ def select_obj(ob):
     ob.select_set(True)  # necessary
 
 
-def calculate_cross_sectional(context):
+def calculate_cross_section_param(context):
     bpy.context.scene.unit_settings.system = 'NONE'
 
     centerline = None
@@ -347,7 +347,7 @@ class export_operator(bpy.types.Operator):
     def execute(self, context):
         import_global()
         
-        calculate_cross_sectional(context)
+        calculate_cross_section_param(context)
         return {'FINISHED'}
 
 

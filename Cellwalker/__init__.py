@@ -44,45 +44,36 @@ import bpy
 #import os
 #import sys
 #sys.path.append(os.getcwd)
-#from . import Main_multipanel
+
 from . Main_multipanel import VIEW3D_PT_main_panel
 
-#import enviroment 
-from .Import_enviroment import (import_enviroment_class, MyProperties_import_enviroment)
+from . Import_enviroment import (import_enviroment_class, MyProperties_import_enviroment)
 
-# import objects
-from . Import_objects_class import (import_objects_class,MyProperties_import_objs)
+from . Import_objects_class import (import_objects_class, MyProperties_import_objs)
 
-#surface and volume
-from . Surface_and_Volumes import (Measure_volume_area,MyProperties_VA)
+from . Surface_and_Volumes import (Measure_volume_area_multi_obj, MyProperties_VA)
 
-#centerline
 from . Centerline import MESH_OT_make_centerline
 
-#cross-section
 from . Crosssections import ( MySettings,export_operator,centerline)
 
-#skeleton
 from . Skeleton import (MESH_OT_skeletonize,MySettings_skeleton,export_operator_sk)
 
-#from Properties import Properties
 from . Angular_distribution import  ( MySettings_Angle,OPERATOR_Angle_distribution)
 
-#from Distance genetic algorithm
-from . Distance_genetic_algorithm import  (MySettings_Distance,distance_GA,straigth_distance, dijkstra_distance)
-# dijkstra_distance
-# Orientaiton
+from . Distance import  (MySettings_Distance, Dijkstra_distance, Straigth_distance)
+
 from . Orientation_two_objs_plane import (MySettings_Orientation,OPERATOR_Orientation)
 
 #V
 classes = (VIEW3D_PT_main_panel,  import_enviroment_class, MyProperties_import_enviroment, 
 			MESH_OT_make_centerline, centerline, export_operator,MySettings, MESH_OT_skeletonize,
-			Measure_volume_area,MyProperties_VA,
+			Measure_volume_area_multi_obj, MyProperties_VA,
 		   	MySettings_skeleton, export_operator_sk,
-		   	import_objects_class,MyProperties_import_objs,
-		   	MySettings_Angle,OPERATOR_Angle_distribution,
-		   	MySettings_Orientation,OPERATOR_Orientation,
-		   	MySettings_Distance,distance_GA,straigth_distance, dijkstra_distance)#, )
+		   	import_objects_class, MyProperties_import_objs,
+		   	MySettings_Angle, OPERATOR_Angle_distribution,
+		   	MySettings_Orientation, OPERATOR_Orientation,
+		   	MySettings_Distance, Dijkstra_distance, Straigth_distance)
 
 #register, unregister = bpy.utils.register_classes_factory(classes)
 
@@ -104,7 +95,7 @@ def register():
 	bpy.types.Scene.my_tool_cross = bpy.props.PointerProperty(type=MySettings)
 	bpy.types.Scene.my_tool_skeleton = bpy.props.PointerProperty(type=MySettings_skeleton)
 	bpy.types.Scene.my_tool_import_objs = bpy.props.PointerProperty(type=MyProperties_import_objs)
-	bpy.types.Scene.my_tool_VA = bpy.props.PointerProperty(type=MyProperties_VA)
+	bpy.types.Scene.my_tool_VA = bpy.props.PointerProperty(type=MyProperties_VA) #? Rename to MySettings_VA
 	bpy.types.Scene.my_tool_angle = bpy.props.PointerProperty(type=MySettings_Angle)
 	bpy.types.Scene.my_tool_or = bpy.props.PointerProperty(type=MySettings_Orientation)
 	bpy.types.Scene.my_tool_dist = bpy.props.PointerProperty(type=MySettings_Distance)

@@ -12,7 +12,7 @@
 
 # Description
 
-Cellwalker-blender is Blender Add-on for the CellWalker pipeline. It is designed for morphometric characterization of objects obtained from 2D/3D mircoscopy images.
+Cellwalker-blender is a Blender Add-on which forms the second part of the CellWalker pipeline (Click <a href="https://github.com/utraf-pasteur-institute/CellWalker-notebooks">here</a> for the first part). It is designed for morphometric characterization of objects obtained from 2D/3D mircoscopy images.
 
 # Getting Started
 

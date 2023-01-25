@@ -16,5 +16,5 @@ Cellwalker-blender is a Blender Add-on which forms the second part of the CellWa
 Instructions for installation and usage can be found in the <a href="https://github.com/utraf-pasteur-institute/CellWalker-blender/wiki">User Guide</a>
 
 # Authors
-Harsharvardhan Khare (Contact: https://www.linkedin.com/in/harshavardhankhare/)
+Harsharvardhan Khare (Contact: https://www.linkedin.com/in/harshavardhankhare/)<br>
 Nathaly Dongo Mendoza (Contact: https://www.linkedin.com/in/nathaly-dongo-mendoza/)

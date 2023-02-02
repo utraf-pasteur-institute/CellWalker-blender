@@ -81,11 +81,11 @@ class VIEW3D_PT_main_panel(bpy.types.Panel):
             row.operator("object.surfvol_multi")
 
 
-        ######################## Centerline and Crosssectional ########################
+        ######################## Centerline and Cross-section tool ########################
         row = layout.row()
         icon = 'TRIA_DOWN' if context.scene.subpanel_Centerline_status else 'TRIA_RIGHT'
         row.prop(context.scene, 'subpanel_Centerline_status', icon=icon, icon_only=True)
-        row.label(text='Cross-setional Tool')
+        row.label(text='Cross-section Tool')
 
 
         # some data on the subpanel

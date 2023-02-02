@@ -1,0 +1,8 @@
+numpy
+scipy
+kimimaro
+trimesh
+skeletor
+networkx
+multiprocess
+shapely

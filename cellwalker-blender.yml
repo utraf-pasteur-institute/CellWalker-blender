@@ -1,0 +1,7 @@
+name: cellwalker-blender
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - ipykernel
+prefix: C:\Users\harsh\anaconda3\envs\cellwalker-blender

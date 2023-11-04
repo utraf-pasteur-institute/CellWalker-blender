@@ -1,7 +1,7 @@
 # CellWalker
 
 <p style="font-style: italics;" align="center">
-<img height=300 src="misc/logo_github.png"/><br>
+<img height=958 src="https://github.com/utraf-pasteur-institute/CellWalker-blender/assets/40121093/b21d86f8-8b60-4bf8-bef6-09f7e5015bf6"/><br>
 </p>
 
 <a href="https://circleci.com/gh/badges/shields/tree/master">
